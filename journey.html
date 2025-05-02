@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Start Your Own Journey</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #f0f0f0;
+      --accent: #2f4f4f; /* Dark Teal */
+      --bg-gradient: linear-gradient(135deg, #1a1a1a, #222222); /* Darker Background */
+      --glass: rgba(0, 0, 0, 0.5);
+      --light-teal: #8a9a92; /* Lighter accent color */
+      --input-bg: #333333; /* Dark input background */
+      --input-border: #444; /* Input border color */
+      --input-text: #f0f0f0; /* Light text color for inputs */
+      --btn-bg: #2f4f4f; /* Button color */
+      --btn-hover-bg: #1a2d2d; /* Button hover effect */
+      --navbar-bg: #222; /* Navbar background */
+      --navbar-text: #f0f0f0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-gradient);
+      color: var(--primary);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      flex-direction: column;
+    }
+
+    header {
+      width: 100%;
+      background: var(--navbar-bg);
+      padding: 1rem 2rem;
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+      justify-content: center; /* Centering navbar links */
+      align-items: center;
+      border-radius: 10px 10px 0 0;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      z-index: 10;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: center; /* Centering links */
+      width: 100%;
+      align-items: center;
+      position: relative;
+    }
+
+    .navbar .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: var(--navbar-text);
+      text-decoration: none;
+      margin-right: 3rem; /* Space between logo and links */
+    }
+
+    .navbar .links {
+      display: flex;
+      gap: 3rem; /* Space between links */
+    }
+
+    .navbar .links a {
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--navbar-text);
+      transition: color 0.3s ease;
+    }
+
+    .navbar .links a:hover {
+      color: var(--light-teal);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 0.4rem;
+      cursor: pointer;
+    }
+
+    .hamburger div {
+      width: 30px;
+      height: 4px;
+      background-color: var(--navbar-text);
+      transition: 0.3s;
+    }
+
+    .container {
+      max-width: 900px;
+      width: 100%;
+      background: var(--glass);
+      backdrop-filter: blur(18px);
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+      padding: 3rem 2rem;
+      margin-top: 4rem;
+      animation: fadeIn 1.4s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.2rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+      background: linear-gradient(to right, #8a9a92, #2f4f4f);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    p.subtitle {
+      font-size: 1.2rem;
+      color: #ddd;
+      margin-bottom: 2rem;
+    }
+
+    .form {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .field {
+      position: relative;
+    }
+
+    .field input,
+    .field textarea {
+      width: 100%;
+      padding: 1rem;
+      border: 1px solid var(--input-border);
+      border-radius: 12px;
+      background: var(--input-bg);
+      color: var(--input-text);
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .field label {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      color: #aaa;
+      pointer-events: none;
+      transition: 0.3s ease;
+    }
+
+    .field input:focus + label,
+    .field input:not(:placeholder-shown) + label,
+    .field textarea:focus + label,
+    .field textarea:not(:placeholder-shown) + label {
+      top: -0.8rem;
+      left: 0.75rem;
+      background: #222222;
+      padding: 0 0.4rem;
+      font-size: 0.75rem;
+      color: var(--accent);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .btn {
+      padding: 1rem 2rem;
+      background: var(--btn-bg);
+      border: none;
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 1rem;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background: var(--btn-hover-bg);
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #bbb;
+      margin-top: 3rem;
+    }
+
+    /* For mobile devices */
+    @media (max-width: 768px) {
+      .navbar .links {
+        display: none;
+        flex-direction: column; /* Stack navbar links on mobile */
+        gap: 1.5rem;
+        align-items: center; /* Center the links */
+        width: 100%;
+        margin-top: 1rem;
+      }
+
+      .navbar.active .links {
+        display: flex; /* Show links when navbar is active */
+      }
+
+      .navbar .logo {
+        margin-right: 0; /* Remove space on mobile */
+        margin-bottom: 1rem; /* Add space below logo */
+      }
+
+      .navbar {
+        justify-content: space-between; /* Keep logo on left, hamburger on right */
+      }
+
+      .hamburger {
+        display: flex;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="navbar">
+      <a href="index.html" class="logo">LiveHappy</a>
+      <div class="hamburger" id="hamburger">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div class="links">
+        <a href="index.html">Home</a>
+        <a href="second.html">Stories</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <h1>Start Your Own Journey</h1>
+    <p class="subtitle">Take one small step. Reflect. Pause. Begin the journey back to yourself.</p>
+    
+    <form class="form">
+      <div class="field">
+        <input type="text" id="name" placeholder=" " required />
+        <label for="name">Your Name</label>
+      </div>
+      <div class="field">
+        <input type="email" id="email" placeholder=" " required />
+        <label for="email">Your Email</label>
+      </div>
+      <div class="field">
+        <textarea id="reflection" placeholder=" " required></textarea>
+        <label for="reflection">What's one thing you want to change or slow down?</label>
+      </div>
+      <button class="btn" type="submit">Send Me a Reminder</button>
+    </form>
+
+    <div class="footer">
+      &copy; 2025 YourBrandName. Your story starts here.
+    </div>
+  </div>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navbar = document.querySelector('.navbar');
+
+    hamburger.addEventListener('click', () => {
+      navbar.classList.toggle('active');
+    });
+  </script>
+
+</body>
+</html>
